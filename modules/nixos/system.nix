@@ -16,9 +16,9 @@
     dmenu
     dwm
     bspwm
-    dunst
+    #dunst
     eww
-    feh
+    #feh
     flameshot
     flatpak
     gh
@@ -27,11 +27,12 @@
     kitty
     libverto
     nnn
-    picom
+    #picom
     polkit_gnome
+    pavucontrol
     qemu
-    rofi
-    sxhkd
+    #rofi
+    #sxhkd
     stdenv
     terminus-nerdfont
     virt-manager
@@ -58,8 +59,18 @@
     extraPortals = [ pkgs.xdg-desktop-portal-gtk ];
   };
 
-  sound.enable = true;
-  hardware.pulseaudio.enable = true; 
+  #sound.enable = true;
+  #hardware.pulseaudio.enable = true; 
+
+  security.rtkit.enable = true;
+  services.pipewire = {
+    enable = true;
+    alsa.enable = true;
+    alsa.support32Bit = true;
+    pulse.enable = true;
+    # If you want to use JACK applications, uncomment this
+    jack.enable = true;
+  };
 
   nixpkgs.overlays = [
 	(final: prev: {

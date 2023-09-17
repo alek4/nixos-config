@@ -75,8 +75,16 @@
 
   networking.hostName = "desktop";
 
+  # for Nvidia GPU
+  services.xserver.videoDrivers = ["nvidia"];
+  hardware.opengl.enable = true;
+  hardware.nvidia = {
+    package = config.boot.kernelPackages.nvidiaPackages.stable;
+    modesetting.enable = true;
+  };
+
   boot.loader.grub.enable = true;
-  boot.loader.grub.device = "/dev/sdc";
+  boot.loader.grub.device = "/dev/sda";
 
   # https://nixos.wiki/wiki/FAQ/When_do_I_update_stateVersion
   system.stateVersion = "23.05";

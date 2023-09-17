@@ -60,7 +60,7 @@
 
     # utils
     ripgrep # recursively searches directories for a regex pattern
-    exa # A modern replacement for ‘ls’
+    eza # A modern replacement for ‘ls’
     fzf # A command-line fuzzy finder
 
     # networking tools
@@ -118,6 +118,7 @@
     userName = "alek4";
     userEmail = "alessandro.bordo41@gmail.com";
   };
+
 
   # Nicely reload system units when changing configs
   systemd.user.startServices = "sd-switch";
