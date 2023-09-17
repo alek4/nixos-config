@@ -41,9 +41,7 @@
   ];
 
   services.xserver.enable = true;
-  services.xserver.windowManager.dwm.enable = true;
-
-  services.picom.enable = true;
+  services.xserver.windowManager.bspwm.enable = true;
 
   services.xserver.layout = "it";
 

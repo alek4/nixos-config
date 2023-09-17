@@ -5,14 +5,15 @@
   # You can import other home-manager modules here
   imports = [
     # If you want to use modules your own flake exports (from modules/home-manager):
-    # outputs.homeManagerModules.example
+    outputs.homeManagerModules.bspwm
+    #outputs.homeManagerModules.services
 
     # Or modules exported from other flakes (such as nix-colors):
     # inputs.nix-colors.homeManagerModules.default
 
     # You can also split up your configuration and import pieces of it here:
     # ./nvim.nix
-  ];
+  ]++ (import ../modules/home-manager/services);
 
   nixpkgs = {
     # You can add overlays here
@@ -93,6 +94,7 @@
     # productivity
     glow # markdown previewer in terminal
     helix
+    vscodium
 
     btop  # replacement of htop/nmon
     iotop # io monitoring
