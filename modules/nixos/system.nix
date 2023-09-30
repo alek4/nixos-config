@@ -46,6 +46,10 @@
   services.xserver.layout = "it";
 
   services.printing.enable = true;
+  services.avahi.enable = true;
+  services.avahi.nssmdns = true;
+  # for a WiFi printer
+  services.avahi.openFirewall = true;
 
   virtualisation.libvirtd.enable = true;
 
@@ -101,22 +105,29 @@
 
   fonts = {
     fonts = with pkgs; [
+      # icon fonts
+      material-design-icons
+
+      # normal fonts
       noto-fonts
       noto-fonts-cjk
       noto-fonts-emoji
-      font-awesome
-      source-han-sans
-      source-han-sans-japanese
-      source-han-serif-japanese
-      (nerdfonts.override { fonts = [ "Meslo" ]; })
+
+      # nerdfonts
+      (nerdfonts.override { fonts = [ "FiraCode" "JetBrainsMono" ]; })
     ];
-    fontconfig = {
-      enable = true;
-      defaultFonts = {
-	      monospace = [ "Meslo LG M Regular Nerd Font Complete Mono" ];
-	      serif = [ "Noto Serif" "Source Han Serif" ];
-	      sansSerif = [ "Noto Sans" "Source Han Sans" ];
-      };
+
+    # use fonts specified by user rather than default ones
+    enableDefaultFonts = false;
+
+    # user defined fonts
+    # the reason there's Noto Color Emoji everywhere is to override DejaVu's
+    # B&W emojis that would sometimes show instead of some Color emojis
+    fontconfig.defaultFonts = {
+      serif = [ "Noto Serif" "Noto Color Emoji" ];
+      sansSerif = [ "Noto Sans" "Noto Color Emoji" ];
+      monospace = [ "JetBrainsMono Nerd Font" "Noto Color Emoji" ];
+      emoji = [ "Noto Color Emoji" ];
     };
   };
 
@@ -127,7 +138,7 @@
       # Be sure to change it (using passwd) after rebooting!
       initialPassword = "correcthorsebatterystaple";
       isNormalUser = true;
-      extraGroups = [ "wheel" "kvm" "input" "disk" "libvirtd" ];
+      extraGroups = [ "wheel" "kvm" "input" "disk" "libvirtd" "dialout" ];
     };
   };
 }

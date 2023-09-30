@@ -6,14 +6,13 @@
   imports = [
     # If you want to use modules your own flake exports (from modules/home-manager):
     outputs.homeManagerModules.bspwm
-    #outputs.homeManagerModules.services
 
     # Or modules exported from other flakes (such as nix-colors):
-    # inputs.nix-colors.homeManagerModules.default
+    inputs.nix-colors.homeManagerModules.default
 
     # You can also split up your configuration and import pieces of it here:
     # ./nvim.nix
-  ]++ (import ../modules/home-manager/services);
+  ] ++ (import ../modules/home-manager/services);
 
   nixpkgs = {
     # You can add overlays here
@@ -113,12 +112,55 @@
     usbutils # lsusb
   ];
 
-  # Enable home-manager and git
-  programs.home-manager.enable = true;
-  programs.git = {
-    enable = true;
-    userName = "alek4";
-    userEmail = "alessandro.bordo41@gmail.com";
+  colorScheme = inputs.nix-colors.colorSchemes.ayu-dark;
+
+  programs = {
+    # Enable home-manager and git
+    home-manager.enable = true;
+    git = {
+      enable = true;
+      userName = "alek4";
+      userEmail = "alessandro.bordo41@gmail.com";
+    };
+    
+    kitty = {
+      enable = true;
+      settings = {
+        foreground = "#${config.colorScheme.colors.base07}";
+        background = "#${config.colorScheme.colors.base00}";
+        #selection_background = "#${config.colorScheme.colors.base05}";
+        #selection_foreground = "#${config.colorScheme.colors.base00}";
+        #url_color = "#${config.colorScheme.colors.base0C}";
+        #cursor = "#${config.colorScheme.colors.base05}";
+        #active_border_color = "#${config.colorScheme.colors.base0D}";
+        #inactive_border_color = "#${config.colorScheme.colors.base03}";
+        #active_tab_background = "#${config.colorScheme.colors.base00}";
+        #active_tab_foreground = "#${config.colorScheme.colors.base05}";
+	#inactive_tab_background = "#${config.colorScheme.colors.base03}";
+	#inactive_tab_foreground = "#${config.colorScheme.colors.base0C}";
+	#tab_bar_background = "#${config.colorScheme.colors.base03}";
+
+	# normal
+	color0 = "#${config.colorScheme.colors.base00}";
+	color1 = "#${config.colorScheme.colors.base01}";
+	color2 = "#${config.colorScheme.colors.base02}";
+	color3 = "#${config.colorScheme.colors.base03}";
+	color4 = "#${config.colorScheme.colors.base04}";
+	color5 = "#${config.colorScheme.colors.base05}";
+	color6 = "#${config.colorScheme.colors.base06}";
+	color7 = "#${config.colorScheme.colors.base07}";
+
+	# bright
+	color8 = "#${config.colorScheme.colors.base08}";
+	color9 = "#${config.colorScheme.colors.base09}";
+	color10 =  "#${config.colorScheme.colors.base0A}";
+	color11 =  "#${config.colorScheme.colors.base0B}";
+	color12 =  "#${config.colorScheme.colors.base0C}";
+	color13 =  "#${config.colorScheme.colors.base0D}";
+	color14 =  "#${config.colorScheme.colors.base0E}";
+	color15 =  "#${config.colorScheme.colors.base0F}";
+      };
+    };
   };
 
 

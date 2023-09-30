@@ -10,7 +10,7 @@
           "bar/main" = {                          # Bar name = Top
             monitor = "HDMI-0";
             width = "100%";
-            height = 15;
+            height = 30;
             background = "#00000000";
             foreground = "#ccffffff";
 
@@ -21,20 +21,22 @@
             module-margin-left = 1;
             #module-margin-right = "0.5";
 
-            font-0 = "SourceCodePro:size=10";     # Icons
-            font-1 = "FontAwesome6Free:style=Solid:size=8";
-            font-2 = "FontAwesome6Free:style=Regular:size=8";
-            font-3 = "FontAwesome6Brands:style=Regular:size=8";
-            font-4 = "FiraCodeNerdFont:size=10";
-            modules-left = "logo bspwm";
+            font-0 = "FiraCode Nerd Font:style=Medium:size=10";     # Icons
+            modules-left = "menu bspwm";
+	    modules-center = "title";
             modules-right = "backlight pad memory cpu pad sink volume pad battery date"; #wired-network wireless-network bluetooth";
-
-            tray-position = "right";
-            tray-detached = "false";
 
             #override-redirect = "true";
             wm-restack = "bspwm";
           };
+	  "module/menu" = {
+	    type = "custom/text";
+	    content-prefix = "";
+	    content-prefix-padding = 1;
+	    content = " ";
+	    content-foreground = "#999";
+            click-left = "rofi -show drun";
+	  };
           "module/memory" = {                     # RAM
             type = "internal/memory";
             format = "<label>"; #<bar-used>";
@@ -99,8 +101,7 @@
             #
             #animation-packetloss-0 = "";
             #animation-packetloss-0-foreground = "#ffa64c";
-            #animation-packetloss-1 = "";
-            #animation-packetloss-1-foreground = "#00000000";
+            #animation-packetloss-1 = ""; #animation-packetloss-1-foreground = "#00000000";
             #animation-packetloss-framerate = 500;
             #};
             #"module/wired-network" = {              # Ditto module above
@@ -158,16 +159,16 @@
             pin-workspace = true;
             #label-monitor = "%name%";
 
-            ws-icon-0 = "1;";                    # Needs to be the same amount and same name as bswmrc
-            ws-icon-1 = "2;";
-            ws-icon-2 = "3;";
-            ws-icon-3 = "4;";
-            ws-icon-4 = "5;";
-            ws-icon-5 = "6;";
-            ws-icon-6 = "7;";
-            ws-icon-7 = "8;";
-            ws-icon-8 = "9;";
-            ws-icon-9 = "10;";
+            ws-icon-0 = "1;1";                    # Needs to be the same amount and same name as bswmrc
+            ws-icon-1 = "2;2";
+            ws-icon-2 = "3;3";
+            ws-icon-3 = "4;4";
+            ws-icon-4 = "5;5";
+            ws-icon-5 = "6;6";
+            ws-icon-6 = "7;7";
+            ws-icon-7 = "8;8";
+            ws-icon-8 = "9;9";
+            ws-icon-9 = "10;10";
             #ws-icon-default = "";               # Can have more workspaces availabe but enable default icon
 
             format = "<label-state> <label-mode>";
