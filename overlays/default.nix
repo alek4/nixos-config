@@ -11,6 +11,9 @@
     # example = prev.example.overrideAttrs (oldAttrs: rec {
     # ...
     # });
+    waybar = prev.waybar.overrideAttrs (oldAttrs: {
+      mesonFlags = oldAttrs.mesonFlags ++ [ "-Dexperimental=true" ];
+    });
   };
 
   # When applied, the unstable nixpkgs set (declared in the flake inputs) will
