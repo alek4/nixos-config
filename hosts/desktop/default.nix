@@ -71,8 +71,6 @@
     };
   };
 
-  # FIXME: Add the rest of your current configuration
-
   networking.hostName = "desktop";
 
   # for Nvidia GPU
@@ -81,6 +79,14 @@
   hardware.nvidia = {
     package = config.boot.kernelPackages.nvidiaPackages.stable;
     modesetting.enable = true;
+  };
+
+  # settings for wayland
+  environment.sessionVariables = {
+    # If your cursor becomes invisible
+    WLR_NO_HARDWARE_CURSORS = "1";
+    # Hint electron apps to use wayland
+    NIXOS_OZONE_WL = "1";
   };
 
   boot.loader.grub.enable = true;

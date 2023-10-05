@@ -6,4 +6,5 @@
   # my-module = import ./my-module.nix;
   bspwm = import ./bspwm.nix;
   services = import ./services/default.nix;
+  hyprland = import ./hyprland.nix;
 }
