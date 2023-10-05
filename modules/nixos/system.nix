@@ -61,7 +61,7 @@
     extraPortals = [ pkgs.xdg-desktop-portal-gtk ];
   };
 
-  #sound.enable = true;
+  sound.enable = true;
   #hardware.pulseaudio.enable = true; 
 
   security.rtkit.enable = true;
