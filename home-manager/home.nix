@@ -110,6 +110,20 @@
     ethtool
     pciutils # lspci
     usbutils # lsusb
+
+    waybar
+    #eww
+
+    # notification
+    dunst
+    libnotify
+
+    # wallpaper daemon
+    swww
+
+    # app launcher
+    rofi-wayland
+
   ];
 
   colorScheme = inputs.nix-colors.colorSchemes.ayu-dark;
@@ -128,8 +142,9 @@
       settings = {
       };
     };
-  };
 
+     
+  };
 
   # Nicely reload system units when changing configs
   systemd.user.startServices = "sd-switch";
