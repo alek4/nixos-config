@@ -93,6 +93,12 @@
     font="${pkgs.terminus_font}/share/consolefonts/ter-i22b.psf.gz";
     useXkbConfig = true; # use xkbOptions in tty.
   };
+  
+  programs.hyprland = {
+    enable = true;
+    nvidiaPatches = true;
+    xwayland.enable = true;
+  };
 
   # for Nvidia GPU
   hardware.opengl.enable = true;
@@ -101,8 +107,6 @@
     modesetting.enable = true;
   };
 
-  virtualisation.libvirtd.enable = true;
-
   # settings for wayland
   environment.sessionVariables = {
     # If your cursor becomes invisible
@@ -110,6 +114,8 @@
     # Hint electron apps to use wayland
     NIXOS_OZONE_WL = "1";
   };
+
+  virtualisation.libvirtd.enable = true;
  
   services.dbus.enable = true;
   xdg.portal = {
