@@ -2,6 +2,7 @@
 # Use this to configure your system environment (it replaces /etc/nixos/configuration.nix)
 {
   inputs,
+  outputs,
   lib,
   config,
   pkgs,
@@ -17,7 +18,7 @@
     # inputs.hardware.nixosModules.common-ssd
 
     # You can also split up your configuration and import pieces of it here:
-    # ./users.nix
+    ./common
 
     # Import your generated (nixos-generate-config) hardware configuration
     ./hardware-configuration.nix
@@ -89,10 +90,21 @@
 
   i18n.defaultLocale = "en_GB.UTF-8";
   console = {
+    keyMap = "it";
     packages=[ pkgs.terminus_font ];
     font="${pkgs.terminus_font}/share/consolefonts/ter-i22b.psf.gz";
-    useXkbConfig = true; # use xkbOptions in tty.
   };
+  
+  services.xserver = {
+    enable = true;
+    videoDrivers = ["nvidia"];
+    displayManager.gdm = {
+      enable = true;
+      wayland = true;
+    };
+  };
+
+  services.xserver.layout = "it";
   
   programs.hyprland = {
     enable = true;
@@ -124,33 +136,6 @@
     extraPortals = [ pkgs.xdg-desktop-portal-gtk ];
   };
   
-  security.rtkit.enable = true;
-  services.pipewire = {
-    enable = true;
-    alsa.enable = true;
-    alsa.support32Bit = true;
-    pulse.enable = true;
-    # If you want to use JACK applications, uncomment this
-    jack.enable = true;
-  };
-  
-  security.polkit.enable = true;
-  systemd = {
-    user.services.polkit-gnome-authentication-agent-1 = {
-      description = "polkit-gnome-authentication-agent-1";
-      wantedBy = [ "graphical-session.target" ];
-      wants = [ "graphical-session.target" ];
-      after = [ "graphical-session.target" ];
-      serviceConfig = {
-        Type = "simple";
-        ExecStart = "${pkgs.polkit_gnome}/libexec/polkit-gnome-authentication-agent-1";
-        Restart = "on-failure";
-        RestartSec = 1;
-        TimeoutStopSec = 10;
-      };
-    };
-  };
-
   boot.loader.grub.enable = true;
   boot.loader.grub.device = "/dev/sda";
 

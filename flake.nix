@@ -35,4 +35,5 @@
         modules = [./nixos/configuration.nix];
       };
     };
+  };
 }
