@@ -106,11 +106,8 @@
     xkbVariant = "";
   };
   
-  programs.hyprland = {
-    enable = true;
-    #nvidiaPatches = true;
-    #xwayland.enable = true;
-  };
+  programs.hyprland.enable = true;
+  programs.hyprland.package = inputs.hyprland.packages."${pkgs.system}".hyprland;
 
   # for Nvidia GPU
   hardware.opengl.enable = true;
@@ -137,7 +134,7 @@
   };
   
   boot.loader.grub.enable = true;
-  boot.loader.grub.device = "/dev/sda";
+  boot.loader.grub.device = "/dev/sdc";
 
   networking.hostName = "home-desktop";
 
