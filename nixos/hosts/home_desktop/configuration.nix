@@ -18,7 +18,7 @@
     # inputs.hardware.nixosModules.common-ssd
 
     # You can also split up your configuration and import pieces of it here:
-    ./common
+    ../../common
 
     # Import your generated (nixos-generate-config) hardware configuration
     ./hardware-configuration.nix
@@ -28,7 +28,7 @@
     extraSpecialArgs = { inherit inputs outputs; };
     users = {
       # Import your home-manager configuration
-      aless = import ../home-manager/home.nix;
+      aless = import ../../../home-manager/home.nix;
     };
   };
 
@@ -102,14 +102,14 @@
       enable = true;
       wayland = true;
     };
+    layout = "it";
+    xkbVariant = "";
   };
-
-  services.xserver.layout = "it";
   
   programs.hyprland = {
     enable = true;
-    nvidiaPatches = true;
-    xwayland.enable = true;
+    #nvidiaPatches = true;
+    #xwayland.enable = true;
   };
 
   # for Nvidia GPU
