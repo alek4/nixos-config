@@ -1,4 +1,17 @@
-{ config, pkgs, inputs, ... }: {
+{ config, pkgs, inputs, ... }: 
+
+let
+  startupScript = pkgs.pkgs.writeShellScriptBin "start" ''
+    ${pkgs.waybar}/bin/waybar &
+    ${pkgs.swww}/bin/swww init &
+    ${pkgs.dunst}/bin/dunst
+
+    sleep 1
+
+    ${pkgs.swww}/bin/swww img ${../../../wallpapers/bg.png} &
+  '';
+in
+{
   
   home.packages = with pkgs; [
     waybar
@@ -10,7 +23,6 @@
   
   wayland.windowManager.hyprland = {
     enable = true;
-    enableNvidiaPatches = true;
     xwayland.enable = true;
 
     plugins = [
@@ -18,6 +30,20 @@
     ];
 
     settings = {
+      "$mod" = "SUPER";
+
+      input = {
+        kb_layout = "it";
+      };
+
+      bind = [
+        "$mod, X, exec, kitty"
+        "$mod, Q, killactive"
+        "$mod, S, exec, rofi -show drun -show-icons"
+      ];
+
+      exec-once = ''${startupScript}/bin/start'';
+      
       "plugin:borders-plus-plus" = {
         add_borders = 1; # 0 - 9
 
@@ -33,23 +59,5 @@
         natural_rounding = "yes";
       };
     };
-
-    extraConfig = ''
-
-      exec-once = swww init &
-      exec-once = swww img ../../../wallpapers/bg.png & 
-      exec-once = waybar &
-      exec-once = dunst
-
-      $mod = SUPER
-
-      input {
-        kb_layout=it
-      }
-      
-      bind = $mod, X, exec, kitty
-      bind = $mod, Q, killactive
-      bind = $mod, S, exec, rofi -show drun -show-icons
-    '';
-  };
+ };
 }

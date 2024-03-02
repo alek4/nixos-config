@@ -102,8 +102,10 @@
       enable = true;
       wayland = true;
     };
-    layout = "it";
-    xkbVariant = "";
+    xkb = {
+      layout = "it";
+      variant = "";
+    };
   };
   
   programs.hyprland.enable = true;

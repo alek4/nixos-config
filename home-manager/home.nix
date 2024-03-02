@@ -57,7 +57,7 @@
 
     # utils
     ripgrep # recursively searches directories for a regex pattern
-    exa # A modern replacement for ‘ls’
+    eza # A modern replacement for ‘ls’
     fzf # A command-line fuzzy finder
 
     # networking tools
