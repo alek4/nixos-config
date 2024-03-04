@@ -14,8 +14,8 @@
     inputs.home-manager.nixosModules.home-manager
 
     # If you want to use modules from other flakes (such as nixos-hardware):
-    # inputs.hardware.nixosModules.common-cpu-amd
-    # inputs.hardware.nixosModules.common-ssd
+    inputs.hardware.nixosModules.common-cpu-intel
+    inputs.hardware.nixosModules.common-pc-ssd
 
     # You can also split up your configuration and import pieces of it here:
     ../../common
@@ -107,7 +107,8 @@
       variant = "";
     };
   };
-  
+
+  programs.zsh.enable = true;
   programs.hyprland.enable = true;
   programs.hyprland.package = inputs.hyprland.packages."${pkgs.system}".hyprland;
 
@@ -151,6 +152,8 @@
 
       # TODO: Be sure to add any other groups you need (such as networkmanager, audio, docker, etc)
       extraGroups = [ "wheel" "kvm" "input" "disk" "libvirtd" "dialout" ];
+
+      shell = pkgs.zsh;
     };
   };
 
