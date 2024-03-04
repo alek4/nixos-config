@@ -12,10 +12,12 @@
     # If you want to use home-manager modules from other flakes (such as nix-colors):
     # inputs.nix-colors.homeManagerModule
     inputs.hyprland.homeManagerModules.default
+    #inputs.nixvim.homeManagerModules.nixvim
 
     # You can also split up your configuration and import pieces of it here:
     # ./nvim.nix
     ./common/desktop
+    ./programs/nixvim
   ];
 
   nixpkgs = {
@@ -124,6 +126,14 @@
     userName = "alek4";
     userEmail = "alessandro.bordo41@gmail.com";
   };
+
+  gtk.enable = true;
+
+  gtk.cursorTheme.package = pkgs.bibata-cursors;
+  gtk.cursorTheme.name = "Bibata-Modern-Ice";
+
+  gtk.theme.package = pkgs.adw-gtk3;
+  gtk.theme.name = "adw-gtk3";
 
   # Nicely reload system units when changing configs
   systemd.user.startServices = "sd-switch";
