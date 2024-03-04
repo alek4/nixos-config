@@ -12,7 +12,6 @@
     # If you want to use home-manager modules from other flakes (such as nix-colors):
     # inputs.nix-colors.homeManagerModule
     inputs.hyprland.homeManagerModules.default
-    #inputs.nixvim.homeManagerModules.nixvim
 
     # You can also split up your configuration and import pieces of it here:
     # ./nvim.nix
@@ -115,9 +114,23 @@
     rofi-wayland
   ];
 
-  # Add stuff for your user as you see fit:
-  # programs.neovim.enable = true;
-  # home.packages = with pkgs; [ steam ];
+  programs.zsh = {
+    enable = true;
+    enableCompletion = false; # enabled in oh-my-zsh
+    initExtra = ''
+      test -f ~/.dir_colors && eval $(dircolors ~/.dir_colors)
+    '';
+    shellAliases = {
+      ls = "eza";
+      vim = "nvim";
+      v = "nvim";
+    };
+    oh-my-zsh = {
+      enable = true;
+      plugins = [ "git" "systemd" "rsync" "kubectl" ];
+      theme = "terminalparty";
+    };
+  };
 
   # Enable home-manager and git
   programs.home-manager.enable = true;
