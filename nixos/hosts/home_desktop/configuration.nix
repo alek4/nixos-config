@@ -84,6 +84,7 @@
     virt-manager
     xdg-desktop-portal-gtk
     xorg.xinit
+    zlib
   ];
 
   time.timeZone = "Europe/Rome";
@@ -106,6 +107,7 @@
       layout = "it";
       variant = "";
     };
+    libinput.mouse.accelProfile = "flat";
   };
 
   programs.zsh.enable = true;
@@ -137,7 +139,7 @@
   };
   
   boot.loader.grub.enable = true;
-  boot.loader.grub.device = "/dev/sdb";
+  boot.loader.grub.device = "/dev/sda";
 
   networking.hostName = "home-desktop";
 

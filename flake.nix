@@ -52,6 +52,14 @@
 	  hyprland.nixosModules.default
 	];
       };
+      thinkpad = nixpkgs.lib.nixosSystem {
+        specialArgs = {inherit inputs outputs;};
+        # > Our main nixos configuration file <
+        modules = [
+	  ./nixos/hosts/thinkpad/configuration.nix
+	  hyprland.nixosModules.default
+	];
+      };
     };
   };
 }

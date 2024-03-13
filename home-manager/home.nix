@@ -17,6 +17,7 @@
     # ./nvim.nix
     ./common/desktop
     ./programs/nixvim
+    ./programs/kitty
   ];
 
   nixpkgs = {
